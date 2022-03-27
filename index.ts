@@ -1,15 +1,13 @@
 import fastify from "fastify";
+import rootRoute from './routes'
 
-const server = fastify();
+const server = fastify({ logger: true });
 
-server.get("/ping", async (request, reply) => {
-  return "pong\n";
-});
+server.register(rootRoute);
 
-server.listen(8080, (err, address) => {
+server.listen(3000, (err, address) => {
   if (err) {
     console.error(err);
     process.exit(1);
   }
-  console.log(`Server listening at ${address}`);
 });
